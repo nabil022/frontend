@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head><link rel="stylesheet" href="style3.css"></head>
+
+<html>
+
+	<body>
+		
+	
+<form action="/user" method="post">
+<label for="username">username</label>
+<input type="text" name="username" class="a">
+<label for="password">password</label>
+<input type="text" name="password" class="a">
+<label for="age">age</label>
+<input type="number" name="age" class="a">
+<button onclick="location.href='hj.html'">submit</button>
+</form>
+<script>
+var express = require('express');
+var path = require('path');
+	var bodyparser = require('body-parser');
+	var mongoose = require('mongoose');
+	var app = express();
+	mongoose.connect('mongodb://localhost/test');
+	var publicforlder = path.join(_dirname,'public');
+	app.use(express.static(publicfolder));
+	app.use(bodyparser.urlencoded((extend: true)));
+	var user = mongoose.model('user',{ name : String, age: Number});
+    app.get('',(req,res)=>{
+	var user = new User((name: req.body.username, age:req.body.age));
+	user.save().then(newUser=> {
+			res.send("created ne user seccesfully");
+		}).catch(err=> {
+			res.send("something went wrong");
+		})
+	})
+	app.lisren(3000,()=>{
+		console.log("server is running on port 3000");
+	})
+</script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <link rel="stylesheet" href="style1.css">
+  
+</head>
+
+</body>
+
+
+<body>
+  <h1>Welcome to our Food Ordering Website</h1>
+  <h2>Please select the items you would like to order:</h2>
+  <ul>
+    <button id="loginbtn" onclick="location.href='try.html'">Log In</button>
+    <li>
+      <img src="download.jpeg" alt="Pizza" onclick="addToOrder('Pizza', 10)">
+      <br>
+      <button class = "a"  onclick="addToOrder('Pizza', 10)">Add Pizza</button>
+    </li>
+    <li>
+      <img src="download (1).jpeg" alt=" Burger" onclick="addToOrder('Burger', 8)">
+      <br>
+      <button class = "a" onclick="addToOrder('Burger', 8)">Add Burger</button>
+    </li>
+    <li>
+      <img src="download (2).jpeg" alt="Salad" onclick="addToOrder('Salad', 5)">
+      <br>
+      <button class = "a"  onclick="addToOrder('Salad', 5)">Add Salad</button>
+    </li>
+  </ul>
+  <p>Your current order:</p>
+  <ul id="orderList">
+  </ul>
+  <p id="totalPrice"></p>
+  <button  id="checkoutBtn" onclick="location.href='location.html'">Checkout</button>
+ 
+ 
+  <script>var order = [];
+    var prices = [];
+    var totalPrice = 0;
+    var orderList = document.getElementById("orderList");
+    var totalPriceEl = document.getElementById("totalPrice");
+    function addToOrder(item, price) {
+    order.push(item);
+    prices.push(price);
+    totalPrice += price;
+    totalPriceEl.innerHTML = "Total Price: $" + totalPrice;
+    var newItem = document.createElement("li");
+    newItem.innerHTML = item + " - $" + price + " <button onclick='removeFromOrder(this)'>Remove</button>";
+    orderList.appendChild(newItem);
+     }
+    function removeFromOrder(removeBtn) {
+    var itemToRemove = removeBtn.parentNode;
+    var itemName = itemToRemove.innerText.slice(0, -7);
+          var itemPrice = itemName.split(" - $")[1];
+          orderList.removeChild(itemToRemove);
+          order.splice(order.indexOf(itemName.split(" - $")[0]), 1);
+          prices.splice(prices.indexOf(parseInt(itemPrice)), 1);
+          totalPrice -= itemPrice;
+          totalPriceEl.innerHTML = "Total Price: $" + totalPrice;
+        }</script>
+ 
+      
+  
+</body>
+</html>
